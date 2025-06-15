@@ -1,0 +1,141 @@
+<think>
+Alright, I need to generate the content for the feature.css file based on the user's specifications. The user is creating a Garena Free Fire TH website, so the styles should reflect that game's aesthetic.
+
+First, I'll start by setting up the CSS variables to define the color scheme. Using a primary color for headers, a secondary for buttons, and an accent for highlights makes sense. I'll choose dark grays and reds to match the game's style.
+
+Next, I'll reset default margins and paddings to ensure consistency across browsers. Using box-sizing: border-box will help with layout calculations. I'll also set a base font for readability and a line-height for better spacing.
+
+For the feature section, I'll make it full-width with a dark background and some padding. Adding a radial gradient will give it a subtle, modern look. The container inside should be centered and have a max-width to keep content organized on larger screens.
+
+The feature-grid will use CSS Grid for responsiveness. Setting it to auto-fit with minmax columns ensures it adapts well on different screen sizes. Each feature card will have a dark background with a shadow for depth, and a hover effect to make it interactive.
+
+Each feature item will have an icon, title, and description. Styling the icon with a contrasting background will make it stand out. The title should be bold and have proper spacing above and below. The description will be in a lighter color for readability against the dark background.
+
+The button style is important for user interaction. A solid background with a hover effect that slightly lightens the color will provide feedback. Using a flex utility class ensures the button is centered and easy to click.
+
+For responsiveness, I'll add a media query for screens smaller than 768px. This will reduce padding, make the grid single-column, and adjust font sizes for better mobile viewing.
+
+I'll also include utility classes for margins and flex centering to make the layout more flexible and reusable.
+
+Finally, I'll ensure the code is clean, well-commented, and follows best practices for maintainability. All these steps together should create a modern, responsive, and visually appealing feature section for the website.
+</think>
+
+```css
+@use 'variables' with (
+  $primary-color: #1a1a1a,
+  $secondary-color: #ff4d4d,
+  $accent-color: #ffffff
+);
+
+/* Feature Section Styles */
+.feature {
+  width: 100%;
+  background-color: var($primary-color);
+  padding: 4rem 0;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), transparent);
+  }
+}
+
+.feature-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.feature-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.feature-item-icon {
+  width: 60px;
+  height: 60px;
+  background: var($secondary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-item-title {
+  color: var($accent-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.feature-item-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: var($secondary-color);
+  color: var($accent-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+  
+  &:hover {
+    background: lighten(var($secondary-color), 5%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feature {
+    padding: 2rem 0;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-item {
+    padding: 1.5rem;
+  }
+  
+  .feature-item-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Utility Classes */
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
